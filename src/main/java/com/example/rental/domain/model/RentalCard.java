@@ -1,6 +1,10 @@
 package com.example.rental.domain.model;
 
 import com.example.rental.domain.model.vo.*;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,15 +15,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class RentalCard {
 
+    @EmbeddedId
     private RentalCardNo rentalCardNo;
+
+    @Embedded
     private IDName member;
     private RentalStatus rentStatus;
+
+    @Embedded
     private LateFee lateFee;
+
+    @ElementCollection
     private List<RentalItem> rentalItemList = new ArrayList<>();
+
+    @ElementCollection
     private List<ReturnItem> returnItemList = new ArrayList<>();
 
 
